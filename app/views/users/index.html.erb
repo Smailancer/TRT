@@ -1,0 +1,21 @@
+<div class="row" >
+    <div class="col" >
+        <div class="jubotron-fluid" >
+         <center>
+            <h1 class="display-5" > TWITTERS </h1>
+            <div class =" btn-group " role="group" arial-label="Basic example" >
+                <%= link_to 'All', tweeters_path, class:"btn btn-dark" %>
+                <%= link_to 'FOLLOWING', tweeters_path(type: 'following' ) , class:"btn btn-dark" %>
+                <%= link_to 'FOLLOWERS', tweeters_path(type: 'followers' ) , class:"btn btn-dark" %>
+            </div>
+        </center>
+        <hr class="my-3" >
+    </div>
+</div>
+</div>
+
+<div class="container" >
+    <div class='row flex-row-reverse' >
+    <%= render @users %>
+    </div>
+</div>

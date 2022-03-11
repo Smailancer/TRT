@@ -1,0 +1,37 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+<%= link_to 'The Real Twitter', root_path, class: 'navbar-brand'%>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse flex-row-reverse" id="navbarSupportedContent">
+    <ul class="navbar-nav d-flex flex-row-reverse ml-auto">
+      <% if user_signed_in? %>
+        <li class="nav-item dropdown">
+          <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <%= gravatar_tag current_user.email, size: 30, html: { class: 'rounded-circle' } %>
+          </a>
+
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <%= link_to 'Personal Account', user_path(current_user.username), class: 'dropdown-item' %>
+            <%= link_to "Settings",  edit_user_registration_path, class: 'dropdown-item' %>
+            <div class="dropdown-divider"></div>
+            <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
+          </div>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#">Feed</a>
+        </li>
+        <li class="nav-item">
+            <%= link_to 'Tweeters', tweeters_path, class: 'nav-link' %>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <%= link_to 'تسجيل الدخول', new_user_session_path, class: 'nav-link' %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</nav>
