@@ -40,6 +40,9 @@ gem 'jquery-rails', '~> 4.4'
 gem 'simple_form', '~> 5.1'
 gem 'devise', '~> 4.8', '>= 4.8.1'
 gem 'gravatarify', '~> 3.1', '>= 3.1.1'
+gem 'public_activity', '~> 1.6', '>= 1.6.4'
+gem 'auto_html', '~> 2.1', '>= 2.1.1'
+gem 'acts_as_votable', '~> 0.13.2'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

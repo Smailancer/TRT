@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
     before_action :set_user, only: [:show, :followers, :following]
-
+    before_action :authenticate_user!, only: [:index]
     def index
         case params[:type]
         when 'following'
@@ -14,7 +14,11 @@ class UsersController < ApplicationController
     end
 
     def show
-        
+      @tweet = Tweet.new
+      @tweets = @user.tweets.order(created_at: :desc)
+      @activities = PublicActivity::Activity.where(owner: @user) + PublicActivity::Activity.where(recipient: @user)
+      @activities.uniq!
+      @activities.sort_by!(&:created_at).reverse!  
     end
 
     def followers

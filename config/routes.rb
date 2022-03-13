@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
+  get 'tweets/create'
+  get 'tweets/edit'
+  get 'tweets/update'
+  get 'tweets/destroy'
   get 'relationships/create'
   get 'relationships/destroy'
   devise_for :users, controllers: {registrations: 'registrations'}
-
+  resources :tweets, only: [:create, :edit, :update, :destroy]
   resources :users, only: [:index,:show] do
     member do
       get :following

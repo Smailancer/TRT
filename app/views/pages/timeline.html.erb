@@ -1,2 +1,38 @@
-<h1>Pages#timeline</h1>
-<p>Find me in app/views/pages/timeline.html.erb</p>
+<div class="row">
+    <div class="col">
+        <div class="jumbotron-fluid text-center">
+            <h1 class="display-5"> Home </h1>
+            <hr class="my-3">
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="timeline-centred">
+                <% @activities.each do |activity| %>
+                    <% if activity.trackable %>
+                        <article class="timeline-entry">
+                            <div class="timeline-entry-inner">
+                                <div class="timeline-icon">
+                                    <%= gravatar_tag activity.owner.email, size: 40 %>
+                                </div>
+                                <div class="timeline-lable tweet-<%= activity.trackable.id %> ">
+                                <h2> <%= link_to activity.owner.username, user_path(activity.owner.username) %> <%= content_tag :time, '', class: 'timeago', datetime: activity.created_at.localtime %> </h2>
+                                <% case activity.key when 'tweet' %>
+                                 <% case activity.key when 'tweet.created' %>
+                                 <p> <%= raw(activity.trackable.content_html) %> </p>
+                                 <%end%>
+                                 <% when 'Relationship' %>
+                                    <p> <%= link_to activity.owner.username, user_path(activity.owner.username) %> Followed <%= link_to activity.recipient.username, user_path(activity.recipient.username) %> </p>
+                                 <%end%>
+                                </div>
+                            </div>
+                        </article>
+                        <%end%>
+                <%end%>
+            </div>
+        </div>
+    </div>
+</div>
