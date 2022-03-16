@@ -1,9 +1,9 @@
 <%= simple_form_for(@tweet) do |f| %>
     <div class="card">
-        <div class="card-header">Tweet Now !</div>
+        <div class="card-header">Whats in your mind !</div>
         <div class="card-body">
             <%= f.error_notification %>
-            <%= f.input :content, required: true, autofocus: true, lable: false ,hint: "#{140 - @tweet.content.to_s.length}", input_html: {class: 'form-control', maxlength:140, onkeyup: 'updateCharts(this); return true; ' } %>
+            <%= f.input :content, required: true, autofocus: true, label: false ,hint: "#{280 - @tweet.content.to_s.length}", input_html: {class: 'form-control', maxlength: 280, onkeyup: 'updateChars(this); return true; ' } %>
             <%= f.button :submit, 'Tweet', class: "btn btn-primary btn-black" %>
         </div>
     </div>
@@ -12,7 +12,8 @@
 <br>
 
 <%= javascript_tag do %>
-    function updateCharts(text) {
-        $('.tweet_content .help-block').text(280 - text.value.length);
-    }
+     function updateChars(text) {
+  	$('.tweet_content .form-text').text(280 - text.value.length);
+  }
+
 <%end%>

@@ -3,6 +3,7 @@ class Tweet < ApplicationRecord
 
     belongs_to :user 
     acts_as_votable
+    acts_as_commentable
     
     validates_presence_of :content
     validates_length_of :content, maximum: 280
@@ -15,6 +16,6 @@ class Tweet < ApplicationRecord
     
       def content=(c)
         super(c)
-        self[:content_html] = FORMAT.call(t)
+        self[:content_html] = FORMAT.call(c)
       end
 end

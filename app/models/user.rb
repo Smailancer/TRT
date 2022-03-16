@@ -7,6 +7,8 @@ class User < ApplicationRecord
   validates_presence_of :username
   validates_uniqueness_of :username
 
+  acts_as_voter
+
   has_many :active_relationships, class_name: 'Relationship', foreign_key: 'follower_id', dependent: :destroy
   has_many :following, through: :active_relationships, source: :followed
 
@@ -14,8 +16,7 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :follower
  
   has_many :tweets, dependent: :destroy
-
-  acts_as_voter
+  has_many :comments, dependent: :destroy
 
   
   def follow(user)

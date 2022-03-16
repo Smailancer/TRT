@@ -1,18 +1,16 @@
 Rails.application.routes.draw do
-  get 'tweets/create'
-  get 'tweets/edit'
-  get 'tweets/update'
-  get 'tweets/destroy'
-  get 'relationships/create'
-  get 'relationships/destroy'
+ 
   devise_for :users, controllers: {registrations: 'registrations'}
   resources :tweets, only: [:create, :edit, :update, :destroy]
+  resources :likes, only: [:create, :destroy], param: :likeable_id
+  resources :comments, only: [:create, :destroy]
   resources :users, only: [:index,:show] do
     member do
       get :following
       get :followers
     end
   end
+
   get 'tweeters', to: 'users#index'
   resources :relationships, only: [:create, :destroy]
   get 'pages/timeline'

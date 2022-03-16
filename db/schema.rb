@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_13_190704) do
+ActiveRecord::Schema.define(version: 2022_03_14_113024) do
 
   create_table "activities", force: :cascade do |t|
     t.string "trackable_type"
@@ -29,6 +29,21 @@ ActiveRecord::Schema.define(version: 2022_03_13_190704) do
     t.index ["recipient_type", "recipient_id"], name: "index_activities_on_recipient_type_and_recipient_id"
     t.index ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type"
     t.index ["trackable_type", "trackable_id"], name: "index_activities_on_trackable_type_and_trackable_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.string "title", limit: 50, default: ""
+    t.text "comment"
+    t.string "commentable_type"
+    t.integer "commentable_id"
+    t.integer "user_id"
+    t.string "role", default: "comments"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["commentable_id"], name: "index_comments_on_commentable_id"
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
+    t.index ["commentable_type"], name: "index_comments_on_commentable_type"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "relationships", force: :cascade do |t|
