@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :tweets, only: [:create, :edit, :update, :destroy]
   resources :likes, only: [:create, :destroy], param: :likeable_id
   resources :comments, only: [:create, :destroy]
+  resources :retweets, only: [:create, :destroy]
   resources :users, only: [:index,:show] do
     member do
       get :following

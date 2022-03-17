@@ -16,4 +16,24 @@
   	$('.tweet_content .form-text').text(280 - text.value.length);
   }
 
+  jQuery(function() {
+      $('#tweet_content').atwho({
+          at: '@',
+          callbacks: {
+            remoteFilter: function(query, callback) {
+                if (query.length < 1) {
+                    return false;
+                } else {
+                    return $.getJSON('/users.json', {
+                        q: query
+                    }, function(data) {
+                        return callback(data);
+                    }
+                    );
+                }
+            }
+          }
+      });
+  });
+
 <%end%>

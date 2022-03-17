@@ -11,11 +11,16 @@ class UsersController < ApplicationController
         else
             @users = User.all.order(created_at: :desc) 
         end   
-    end
 
+        respond_to do |format|
+            format.html 
+            format.json { render :json => User.mentions(params[:q])}
+        end 
+    end
     def show
       @tweet = Tweet.new
-      @tweets = @user.tweets.order(created_at: :desc)
+      @tweets = @user.retweets + @user.tweets
+      @tweets.sort_by!(&:created_at).reverse!
       @activities = PublicActivity::Activity.where(owner: @user) + PublicActivity::Activity.where(recipient: @user)
       @activities.uniq!
       @activities.sort_by!(&:created_at).reverse!  

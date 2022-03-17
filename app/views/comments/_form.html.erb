@@ -5,3 +5,27 @@
         </div>
     <%= submit_tag 'Respond', class: 'btn btn-sm btn-primary' %>
 <%end%>
+
+<%= javascript_tag do %>
+
+  jQuery(function() {
+      $('#comment_text').atwho({
+          at: '@',
+          callbacks: {
+            remoteFilter: function(query, callback) {
+                if (query.length < 1) {
+                    return false;
+                } else {
+                    return $.getJSON('/users.json', {
+                        q: query
+                    }, function(data) {
+                        return callback(data);
+                    }
+                    );
+                }
+            }
+          }
+      });
+  });
+
+<%end%>

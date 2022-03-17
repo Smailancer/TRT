@@ -8,7 +8,7 @@
     <div class="card-body" style="padding-bottom: 0px" >
             <%= raw(tweet.content_html) %>
             <%= render 'tweets/like_and_dislike_buttons', tweet: tweet %>
-
+            <%= render 'tweets/retweet_button', tweet: tweet if user_signed_in? && tweet.user_id != current_user.id %>
             <hr>
             <div class="card-body">
                 <%= render 'comments/form', tweet: tweet %>

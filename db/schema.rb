@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_14_113024) do
+ActiveRecord::Schema.define(version: 2022_03_17_120537) do
 
   create_table "activities", force: :cascade do |t|
     t.string "trackable_type"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 2022_03_14_113024) do
     t.integer "recipient_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "read", default: false
     t.index ["owner_id", "owner_type"], name: "index_activities_on_owner_id_and_owner_type"
     t.index ["owner_type", "owner_id"], name: "index_activities_on_owner_type_and_owner_id"
     t.index ["recipient_id", "recipient_type"], name: "index_activities_on_recipient_id_and_recipient_type"
@@ -54,6 +55,16 @@ ActiveRecord::Schema.define(version: 2022_03_14_113024) do
     t.index ["followed_id"], name: "index_relationships_on_followed_id"
     t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
     t.index ["follower_id"], name: "index_relationships_on_follower_id"
+  end
+
+  create_table "retweets", force: :cascade do |t|
+    t.integer "retweeter_id"
+    t.integer "source_tweet_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["retweeter_id", "source_tweet_id"], name: "index_retweets_on_retweeter_id_and_source_tweet_id", unique: true
+    t.index ["retweeter_id"], name: "index_retweets_on_retweeter_id"
+    t.index ["source_tweet_id"], name: "index_retweets_on_source_tweet_id"
   end
 
   create_table "tweets", force: :cascade do |t|

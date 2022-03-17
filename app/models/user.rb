@@ -17,7 +17,7 @@ class User < ApplicationRecord
  
   has_many :tweets, dependent: :destroy
   has_many :comments, dependent: :destroy
-
+  has_many :retweets, dependent: :destroy, foreign_key: 'retweeter_id'
   
   def follow(user)
     active_relationships.create(followed_id: user.id)
@@ -29,5 +29,11 @@ class User < ApplicationRecord
 
   def following?(user)
     following.include? user
+  end
+
+  def self.mentions(letters)
+    return User.none unless letters.present?
+    users = User.limit(8).where('username like ?', "#{letters}%")
+    users.map { |user| { name: user.username} }
   end
 end

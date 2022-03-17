@@ -36,7 +36,7 @@
                     <% when 'tweet.disliked' %>
                       <p><%= link_to activity.owner.username, user_path(activity.owner.username) %> Disliked a tweet</p>
                     <% when 'tweet.mention' %>
-                      <p>ذكر <%= link_to activity.recipient.username, user_path(activity.recipient.username) %> في تغريدة</p>
+                      <p><%= link_to activity.recipient.username, user_path(activity.recipient.username) %> Mentioned in a tweet </p>
                     <% end %>
                 	<% when 'Relationship' %>
                 	  <p><%= link_to activity.owner.username, user_path(activity.owner.username) %> Followed <%= link_to activity.recipient.username, user_path(activity.recipient.username) %></p>

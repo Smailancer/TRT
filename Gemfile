@@ -44,6 +44,7 @@ gem 'public_activity', '~> 1.6', '>= 1.6.4'
 gem 'auto_html', '~> 2.1', '>= 2.1.1'
 gem 'acts_as_votable', '~> 0.13.2'
 gem 'acts_as_commentable', '~> 4.0', '>= 4.0.2'
+gem 'jquery-atwho-rails', '~> 1.5', '>= 1.5.4'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

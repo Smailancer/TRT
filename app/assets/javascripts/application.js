@@ -12,6 +12,7 @@
 //
 //= require jquery3
 //= require popper
+//= require jquery.atwho
 //= require bootstrap
 //= require rails-ujs
 //= require activestorage
