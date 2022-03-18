@@ -13,7 +13,7 @@
             <div class="card-body">
                 <%= render 'comments/form', tweet: tweet %>
             </div>
-            <div id="comments-<%= tweet.id%> ">
+            <div id="comments-<%= tweet.id %>">
                 <%= render tweet.comments.reverse %>
             </div>
     </div>

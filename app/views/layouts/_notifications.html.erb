@@ -1,0 +1,28 @@
+<li class="nav-item dropdown">
+    <%= link_to notifications_path, class: 'nav-link', 'data-toggle': 'dropdown', remote: true, method: :post do %>
+        <%= content_tag :span, 'Notifications' %>
+        <%= fa_icon 'bell-o' %>
+        <%= content_tag :span, @notifications.size, class: 'badge badge-danger notifications-count' if @notifications.size > 0 %>
+    <%end%>
+
+    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+        <% @notifications.each do |notification| %>
+            <% case notification.trackable_type %>
+            <% when 'Tweet' %>
+                <% case notification.key when 'tweet.liked' %>
+                    <a href="#" class="dropdown-item"> <%= notification.owner.username %> Liked the tweet </a>
+                <% when 'tweet.disliked' %>
+                    <a href="#" class="dropdown-item"> <%= notification.owner.username %> Disliked the tweet </a>
+                <% when 'tweet.mention' %>
+                    <a href="#" class="dropdown-item"> <%= notification.owner.username %> Mentioned you in a tweet </a>
+                <%end%>
+                <% when 'Relationship' %>
+                    <a href="#" class="dropdown-item"> <%= notification.owner.username %> Followed you </a>
+                <% when 'Comment' %>
+                    <a href="#" class="dropdown-item"> <%= notification.owner.username %> Commented on your tweet </a>
+                <% when 'Retweet' %>
+                    <a href="#" class="dropdown-item"> <%= notification.owner.username %> Retweeted your tweet </a>
+                <%end%>
+            <%end%>
+    </div>
+</li>

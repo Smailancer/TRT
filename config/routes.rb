@@ -11,7 +11,7 @@ Rails.application.routes.draw do
       get :followers
     end
   end
-
+  post :notifications, to: 'notifications#mark_all_read'
   get 'tweeters', to: 'users#index'
   resources :relationships, only: [:create, :destroy]
   get 'pages/timeline'

@@ -4,21 +4,21 @@
     </div>
     <div class="col">
         <div class="jumbotron-fluid">
-            <h1 class="display-3"> <%= @user.username %>
+            <h1 class="display-3">
+             <%= @user.username %>
                 <span class="btn-group">
                     <%= render 'follow_button', user: @user %>
                 </span>
             </h1>
-            <p class="lead" > X : Fllowers | Y : Followings </p>
             <p class="lead">
                 <%= link_to "Followers", followers_user_path(@user.username) %>: <%= @user.followers.count %>
                 |
                 <%= link_to "Following", following_user_path(@user.username) %>: <%= @user.following.count %>
             </p>
-            <p> Age <%= @user.age %> </p>
-            <p> Gender : <%= @user.gender %> </p>
+            <p><%= fa_icon 'universal-access' %> Age <%= @user.age %> </p>
+            <p><%= fa_icon 'genderless' %> Gender : <%= @user.gender %> </p>
             <hr class="my-3">
-            <h1 class="lead"> About me : </h1>
+            <h1 class="lead"><%= fa_icon 'address-card' %> About me : </h1>
             <p class="lead"> <%= @user.bio %> </p>
         </div>
     </div>
@@ -38,7 +38,7 @@
             <div class="col-4">
                 <div class="card">
                     <div class="card-header ">
-                        Activities
+                         <%= fa_icon 'list', text: 'Activities' %>
                     </div>
                     <ul class="list-group list-group-flash">
                     <%= render_activities(@activities) %>    
