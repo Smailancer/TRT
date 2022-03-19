@@ -3,9 +3,9 @@
         <%= gravatar_tag comment.user.email, size: 25, :html => { :class => 'img-fluid' } %> <%= comment.user.username %> Commented <%= content_tag :time, '', class: 'timeago', datetime: comment.created_at.localtime %>
         <% if user_signed_in? && current_user == comment.user %>
             <%= link_to('Delete', comment_path(comment), method: :delete, remote: true, class: 'btn btn-sm btn-danger' ) %>
-        <%end%>
+        <% end %>
     </div>
     <div class="card-body">
-        <%= raw(comment.comment) %>
+        <%== comment.comment %>
     </div>
 </div>
